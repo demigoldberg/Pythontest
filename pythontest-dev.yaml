@@ -7,7 +7,7 @@ spec:
   template:
     metadata: 
       labels:
-        app: pythontest
+        app: pythontest-app
     spec:
       containers:
       - name: pythontest-app

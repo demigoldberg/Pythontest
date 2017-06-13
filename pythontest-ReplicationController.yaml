@@ -1,0 +1,28 @@
+# For more info about Replication Controllers:
+# https://cloud.google.com/container-engine/docs/replicationcontrollers/
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: pythontest-frontend
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: pythontest-app
+        tier: frontend
+    spec:
+      containers:
+      - name: pythontest-app
+        # Replace $GCLOUD_PROJECT with your project ID or use `make template`.
+        image: gcr.io/myproject-169106/pythontest:1
+        # This setting makes nodes pull the docker image every time before
+        # starting the pod. This is useful when debugging, but should be turned
+        # off in production.
+        imagePullPolicy: Always
+        
+        # The app listen on port 8800 for web traffic by default.
+        ports:
+        - containerPort: 8800
+
+---
