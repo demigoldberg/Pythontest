@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: pythontest-deployment
+spec:
+  replicas: 2
+  template:
+    metadata: 
+      labels:
+        app: pythontest
+    spec:
+      containers:
+      - name: pythontest-app
+        image: gcr.io/myproject-169106/pythontest:1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8800
+      
+
+
